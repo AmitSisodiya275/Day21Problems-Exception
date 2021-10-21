@@ -6,37 +6,27 @@ import org.junit.Test;
 
 public class MoodAnalyserTest {
 
-	@Test 
+	@Test
 	public void whenGivenMessageIfContainsSadShouldReturnSad() {
 		MoodAnalyser moodAnalyser = new MoodAnalyser();
 		String result = moodAnalyser.analyseMood("I am in sad mood");
-		assertEquals("SAD",result);
+		assertEquals("SAD", result);
 	}
-	
-	@Test 
+
+	@Test
 	public void whenGivenMessageIfNotContainSadShouldReturnHappy() {
 		MoodAnalyser moodAnalyser = new MoodAnalyser();
 		String result = moodAnalyser.analyseMood("I am in any mood");
-		assertEquals("HAPPY",result);
+		assertEquals("HAPPY", result);
 	}
-	
-	@Test 
-	public void whenGivenMessageInTheConstructorIfContainsSadShouldReturnSad() {
-		MoodAnalyser moodAnalyser = new MoodAnalyser("I am in sad mood");
-		String result = moodAnalyser.analyseMood();
-		assertEquals("SAD",result);
-	}
-	
-	@Test 
-	public void whenGivenMessageInTheConstructorIfNotContainSadShouldReturnHappy() {
-		MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any mood");
-		String result = moodAnalyser.analyseMood();
-		assertEquals("HAPPY",result);
-	}
-	@Test 
-	public void whenGivenNullInMessageShouldReturnHappy() {
+
+	@Test
+	public void whenGivenNullInMessageShouldThroughUserDefinedException() {
 		MoodAnalyser moodAnalyser = new MoodAnalyser(null);
-		String result = moodAnalyser.analyseMood();
-		assertEquals("HAPPY",result);
+		try {
+			moodAnalyser.analyseMood();
+		} catch (MoodAnalysisException e) {
+			assertEquals("Enter a proper Message", e.getMessage());
+		}
 	}
 }
